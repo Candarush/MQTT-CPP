@@ -16,7 +16,7 @@ void MQTTloop(string nickname) {
         while (cin>>cin_buffer)
         {
             cin_buffer = nickname + ": " + cin_buffer;
-            if (MyMQTT->send_message(cin_buffer.c_str())) break;;
+            if (MyMQTT->send_message(cin_buffer.c_str())) break;
         }
     }
     
