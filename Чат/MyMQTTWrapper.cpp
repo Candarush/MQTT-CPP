@@ -4,9 +4,11 @@
 #include <cstdio>
 #include <iostream>
 #include <locale>
+#include <vector>
 
- 
 using namespace std;
+
+vector<char*> messages;
 
 MyMqttWrapper::MyMqttWrapper(const char *id, const char *host, int port) : mosquittopp(id)
 {
@@ -22,12 +24,19 @@ void MyMqttWrapper::on_connect(int rc)
         subscribe(NULL, "M30-212B-18/Game");
     }
 }
+
 void MyMqttWrapper::on_message(const struct mosquitto_message *message){
     setlocale(LC_CTYPE, "rus");
     if(!strcmp(message->topic, "M30-212B-18/Game")){
         printf("%s\n",message->payload);
+        messgaes.push_back(message->payload);
     }
 };
+
+char* get_essage()
+{
+    return messages.pop_back();
+}
 
 bool MyMqttWrapper::send_message(const  char * message)
 {
