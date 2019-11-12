@@ -33,7 +33,7 @@ void MyMqttWrapper::on_message(const struct mosquitto_message *message){
     }
 };
 
-char* get_essage()
+char* get_message()
 {
     return messages.pop_back();
 }
